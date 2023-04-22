@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: bisque;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
 
 /* Nav Bar Styles */
 .navbar-container {

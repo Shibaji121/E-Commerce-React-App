@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -11,20 +12,26 @@ function Navbar() {
             style={{ width: "10rem", height: "6rem" }}
           />
         </div>
-        <div>Products</div>
+        <Link to="/">
+          <div>Products</div>
+        </Link>
         <div>Add a Product</div>
-        <img
-          src="https://i.ibb.co/WGKNKzF/plus.png"
-          alt="plus-icon"
-          style={{ marginLeft: "-30px" }}
-        />
+        <Link to="/add-product">
+          <img
+            src="https://i.ibb.co/WGKNKzF/plus.png"
+            alt="plus-icon"
+            style={{ marginLeft: "-30px" }}
+          />
+        </Link>
       </div>
       <div className="right-nav">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png"
-          alt="cart-img"
-        />
-        <span className="cart-count">0</span>
+        <Link to="/cart">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png"
+            alt="cart-img"
+          />
+          <span className="cart-count">0</span>
+        </Link>
         <img
           src="https://cdn-icons-png.flaticon.com/512/9408/9408175.png"
           alt="profile-img"
