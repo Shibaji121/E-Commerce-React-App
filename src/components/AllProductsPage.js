@@ -27,6 +27,9 @@ function AllProductsPage() {
 
   return (
     <div className="all-product-container">
+      <button className="filter-btn" type="submit">
+        Sort By Price
+      </button>
       {products.map((product, index) => {
         return (
           <div key={index} id={product.id} className="product-container">
