@@ -6,11 +6,13 @@ function Navbar() {
     <nav className="navbar-container">
       <div className="left-nav">
         <div>
-          <img
-            src="https://png.pngtree.com/png-vector/20220207/ourlarge/pngtree-e-letter-logo-ecommerce-shop-store-design-png-image_4381099.png"
-            alt="brand-logo"
-            style={{ width: "10rem", height: "6rem" }}
-          />
+          <Link to="/">
+            <img
+              src="https://png.pngtree.com/png-vector/20220207/ourlarge/pngtree-e-letter-logo-ecommerce-shop-store-design-png-image_4381099.png"
+              alt="brand-logo"
+              style={{ width: "10rem", height: "6rem" }}
+            />
+          </Link>
         </div>
         <Link to="/">
           <div>Products</div>
