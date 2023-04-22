@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/allProduct.css";
+import { Link } from "react-router-dom";
 
 function AllProductsPage() {
   const [products, setProducts] = useState([]);
@@ -28,7 +29,9 @@ function AllProductsPage() {
       {products.map((product, index) => {
         return (
           <div key={index} id={product.id} className="product-container">
-            <img src={product.image} alt="product-img" />
+            <Link to={`/productDetail/${product.id}`}>
+              <img src={product.image} alt="product-img" />
+            </Link>
             <div className="product-left-container">
               <h1>{product.title}</h1>
               <div className="rating">Rating: {product.rating}</div>
