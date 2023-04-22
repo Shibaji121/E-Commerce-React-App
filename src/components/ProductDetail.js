@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/productDetail.css";
+import StarRating from "./StarRating";
 
 function ProductDetail() {
   return (
@@ -12,7 +13,10 @@ function ProductDetail() {
         />
         <div className="details">
           <h1>Product Title</h1>
-          <div>Rating: 4</div>
+          <div className="rating">
+            Rating : <StarRating starCount={4} />
+            <span>{4}.0</span>
+          </div>
           <div>Price: ₹500.00</div>
           <div style={{ color: "darkviolet" }}>
             Product Description:

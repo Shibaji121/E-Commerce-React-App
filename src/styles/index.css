@@ -55,3 +55,14 @@ a {
   padding: 0px 8px 10px 8px;
   border-radius: 50%;
 }
+.rating {
+  display: flex;
+  align-items: center;
+}
+.star-rating {
+  font-size: 24px;
+}
+
+.star {
+  color: #f0c14b; /* Amazon's star color */
+}

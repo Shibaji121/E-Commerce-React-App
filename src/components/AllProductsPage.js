@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/allProduct.css";
 import { Link } from "react-router-dom";
+import StarRating from "./StarRating";
 
 function AllProductsPage() {
   const [products, setProducts] = useState([]);
@@ -34,7 +35,10 @@ function AllProductsPage() {
             </Link>
             <div className="product-left-container">
               <h1>{product.title}</h1>
-              <div className="rating">Rating: {product.rating}</div>
+              <div className="rating">
+                Rating : <StarRating starCount={product.rating} />
+                <span>{product.rating}.0</span>
+              </div>
               <div className="product-details">{product.about}</div>
             </div>
             <div className="product-right-container">

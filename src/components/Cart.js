@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/cart.css";
+import StarRating from "./StarRating";
 
 function Cart() {
   return (
@@ -12,7 +13,10 @@ function Cart() {
         />
         <div className="product-detail">
           <div style={{ color: "red" }}>Product Title</div>
-          <div>Rating: 4</div>
+          <div className="rating">
+            Rating : <StarRating starCount={2} />
+            <span>{2}.0</span>
+          </div>
           <div>Price: ₹500.00</div>
           <button type="submit">Remove</button>
         </div>
