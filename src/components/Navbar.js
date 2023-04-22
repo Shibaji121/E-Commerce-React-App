@@ -32,7 +32,7 @@ function Navbar() {
             src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png"
             alt="cart-img"
           />
-          <span className="cart-count">0</span>
+          <span className="cart-count">1</span>
         </Link>
         <img
           src="https://cdn-icons-png.flaticon.com/512/9408/9408175.png"
