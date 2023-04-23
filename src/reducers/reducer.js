@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCTS,
   ADD_TO_CART,
+  DELETE_PRODUCT,
   SELECT_PRODUCT,
   SORT_BY_PRICE,
 } from "../actions/action";
@@ -37,6 +38,14 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         productList: sortedProducts,
+      };
+    case DELETE_PRODUCT:
+      const filteredArray = state.productList.filter(
+        (product) => product.id !== action.product.id
+      );
+      return {
+        ...state,
+        productList: filteredArray,
       };
     default:
       return state;

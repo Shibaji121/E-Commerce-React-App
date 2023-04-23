@@ -3,6 +3,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const ADD_PRODUCTS = "ADD_PRODUCTS";
 export const SELECT_PRODUCT = "SELECT_PRODUCT";
 export const SORT_BY_PRICE = "SORT_BY_PRICE";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 // action creators
 export const addToCart = (product) => {
@@ -23,6 +24,13 @@ export const sortByPrice = (products) => {
   return {
     type: SORT_BY_PRICE,
     products,
+  };
+};
+
+export const deleteProduct = (product) => {
+  return {
+    type: DELETE_PRODUCT,
+    product,
   };
 };
 

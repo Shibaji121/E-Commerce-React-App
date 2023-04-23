@@ -5,6 +5,7 @@ import StarRating from "./StarRating";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
+  deleteProduct,
   handleAddProducts,
   selectedProduct,
   sortByPrice,
@@ -32,6 +33,10 @@ function AllProductsPage() {
   function handleSortByPrice(products) {
     dispatch(sortByPrice(products));
     ref.current.style.display = "block";
+  }
+
+  function handleDeleteProduct(product) {
+    dispatch(deleteProduct(product));
   }
 
   return (
@@ -78,7 +83,11 @@ function AllProductsPage() {
               <button className="blue-btn" type="submit">
                 Edit
               </button>
-              <button className="red-btn" type="submit">
+              <button
+                className="red-btn"
+                type="submit"
+                onClick={() => handleDeleteProduct(product)}
+              >
                 Delete
               </button>
               <button
