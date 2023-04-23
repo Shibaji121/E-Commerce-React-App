@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "../styles/allProduct.css";
 import { Link, useNavigate } from "react-router-dom";
 import StarRating from "./StarRating";
@@ -7,11 +7,13 @@ import {
   addToCart,
   handleAddProducts,
   selectedProduct,
+  sortByPrice,
 } from "../actions/action";
 
 function AllProductsPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const ref = useRef();
   const products = useSelector((state) => state.productReducer.productList);
   console.log("repeating check");
 
@@ -27,11 +29,32 @@ function AllProductsPage() {
     dispatch(selectedProduct(product));
   }
 
+  function handleSortByPrice(products) {
+    dispatch(sortByPrice(products));
+    ref.current.style.display = "block";
+  }
+
   return (
     <div className="all-product-container">
-      <button className="filter-btn" type="submit">
+      <button
+        className="filter-btn"
+        type="submit"
+        onClick={() => {
+          handleSortByPrice(products);
+        }}
+      >
         Sort By Price
       </button>
+      <img
+        className="cross-btn"
+        ref={ref}
+        src="https://i.ibb.co/60KKyQc/x-mark.png"
+        alt="cross"
+        onClick={() => {
+          dispatch(handleAddProducts());
+          ref.current.style.display = "none";
+        }}
+      />
       {products.map((product, index) => {
         return (
           <div key={index} id={product.id} className="product-container">

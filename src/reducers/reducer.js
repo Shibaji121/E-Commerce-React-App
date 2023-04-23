@@ -1,4 +1,9 @@
-import { ADD_PRODUCTS, ADD_TO_CART, SELECT_PRODUCT } from "../actions/action";
+import {
+  ADD_PRODUCTS,
+  ADD_TO_CART,
+  SELECT_PRODUCT,
+  SORT_BY_PRICE,
+} from "../actions/action";
 
 const initialProductState = {
   cart: [],
@@ -22,6 +27,16 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         product: action.product,
+      };
+    case SORT_BY_PRICE:
+      const parsePrice = (x) =>
+        parseFloat(x.toString().replace(/^\$/, "")) || 0;
+      const sortedProducts = action.products
+        .slice()
+        .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+      return {
+        ...state,
+        productList: sortedProducts,
       };
     default:
       return state;
