@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../styles/allProduct.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,6 +11,7 @@ import {
 
 function AllProductsPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector((state) => state.productReducer.productList);
 
   useEffect(() => {
@@ -18,7 +19,6 @@ function AllProductsPage() {
   });
 
   function addProductToCart(product) {
-    // console.log(product);
     dispatch(addToCart(product));
   }
 
@@ -57,7 +57,14 @@ function AllProductsPage() {
               <button className="red-btn" type="submit">
                 Delete
               </button>
-              <button className="blue-btn" type="submit">
+              <button
+                className="blue-btn"
+                type="submit"
+                onClick={() => {
+                  handleSelectProduct(product);
+                  return navigate(`/productDetail/${product.id}`);
+                }}
+              >
                 Product Details
               </button>
               <button
