@@ -1,22 +1,28 @@
 .cart {
-  width: 80vw;
+  width: 90vw;
   margin: 6rem auto;
+}
+.cart-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .cart-container {
   display: flex;
   flex-direction: row;
   background-color: white;
   border-radius: 30px;
-  width: 30vw;
+  width: 28vw;
+  margin: 0px 20px 15px 0px;
+  height: inherit;
 }
 .cart-container img {
-  height: 100%;
+  height: inherit;
   width: 10rem;
   margin: 1rem;
   padding: 0.7rem;
   border-radius: 30px;
   box-shadow: 0px 0px 10px 4px gray;
-  object-fit: cover;
 }
 .product-detail {
   font-size: larger;

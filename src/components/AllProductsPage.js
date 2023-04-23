@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../styles/allProduct.css";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/action";
 
 function AllProductsPage() {
   const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const url =
@@ -24,6 +28,11 @@ function AllProductsPage() {
         console.error("FETCH ERROR:", error);
       });
   }, []);
+
+  function addProductToCart(product) {
+    // console.log(product);
+    dispatch(addToCart(product));
+  }
 
   return (
     <div className="all-product-container">
@@ -55,7 +64,11 @@ function AllProductsPage() {
               <button className="blue-btn" type="submit">
                 Product Details
               </button>
-              <button className="trans-btn" type="submit">
+              <button
+                className="trans-btn"
+                type="submit"
+                onClick={() => addProductToCart(product)}
+              >
                 Add To Cart
               </button>
             </div>
