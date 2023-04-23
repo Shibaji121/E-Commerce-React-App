@@ -1,33 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../styles/allProduct.css";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../actions/action";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, handleAddProducts } from "../actions/action";
 
 function AllProductsPage() {
-  const [products, setProducts] = useState([]);
-
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.productReducer.productList);
 
   useEffect(() => {
-    const url =
-      "https://my-json-server.typicode.com/Shibaji121/products/products/";
-    fetch(url)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("NETWORK RESPONSE ERROR");
-        }
-      })
-      .then((productList) => {
-        setProducts(productList);
-      })
-      .catch((error) => {
-        console.error("FETCH ERROR:", error);
-      });
-  }, []);
+    dispatch(handleAddProducts());
+  });
 
   function addProductToCart(product) {
     // console.log(product);
