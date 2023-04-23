@@ -1,5 +1,6 @@
 import {
   ADD_PRODUCTS,
+  ADD_PRODUCT_TO_LIST,
   ADD_TO_CART,
   DELETE_PRODUCT,
   SELECT_PRODUCT,
@@ -10,6 +11,7 @@ const initialProductState = {
   cart: [],
   productList: [],
   product: {},
+  noRefetch: false,
 };
 
 export default function productReducer(state = initialProductState, action) {
@@ -20,9 +22,15 @@ export default function productReducer(state = initialProductState, action) {
         cart: [...state.cart, action.product],
       };
     case ADD_PRODUCTS:
+      if (state.noRefetch) {
+        return {
+          ...state,
+        };
+      }
       return {
         ...state,
         productList: action.list,
+        noRefetch: false,
       };
     case SELECT_PRODUCT:
       return {
@@ -32,12 +40,13 @@ export default function productReducer(state = initialProductState, action) {
     case SORT_BY_PRICE:
       const parsePrice = (x) =>
         parseFloat(x.toString().replace(/^\$/, "")) || 0;
-      const sortedProducts = action.products
+      const sortedProducts = state.productList
         .slice()
         .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
       return {
         ...state,
         productList: sortedProducts,
+        noRefetch: false,
       };
     case DELETE_PRODUCT:
       const filteredArray = state.productList.filter(
@@ -46,6 +55,13 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         productList: filteredArray,
+        noRefetch: false,
+      };
+    case ADD_PRODUCT_TO_LIST:
+      return {
+        ...state,
+        productList: [action.product, ...state.productList],
+        noRefetch: true,
       };
     default:
       return state;
