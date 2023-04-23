@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const getData = useSelector((state) => state.productReducer.cart);
+  console.log(getData);
+
   return (
     <nav className="navbar-container">
       <div className="left-nav">
