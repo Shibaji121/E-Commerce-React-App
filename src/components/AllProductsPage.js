@@ -3,7 +3,11 @@ import "../styles/allProduct.css";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, handleAddProducts } from "../actions/action";
+import {
+  addToCart,
+  handleAddProducts,
+  selectedProduct,
+} from "../actions/action";
 
 function AllProductsPage() {
   const dispatch = useDispatch();
@@ -18,6 +22,10 @@ function AllProductsPage() {
     dispatch(addToCart(product));
   }
 
+  function handleSelectProduct(product) {
+    dispatch(selectedProduct(product));
+  }
+
   return (
     <div className="all-product-container">
       <button className="filter-btn" type="submit">
@@ -27,7 +35,11 @@ function AllProductsPage() {
         return (
           <div key={index} id={product.id} className="product-container">
             <Link to={`/productDetail/${product.id}`}>
-              <img src={product.image} alt="product-img" />
+              <img
+                src={product.image}
+                alt="product-img"
+                onClick={() => handleSelectProduct(product)}
+              />
             </Link>
             <div className="product-left-container">
               <h1>{product.title}</h1>

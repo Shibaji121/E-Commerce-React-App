@@ -1,11 +1,19 @@
 // action types
 export const ADD_TO_CART = "ADD_TO_CART";
 export const ADD_PRODUCTS = "ADD_PRODUCTS";
+export const SELECT_PRODUCT = "SELECT_PRODUCT";
 
 // action creators
 export const addToCart = (product) => {
   return {
     type: ADD_TO_CART,
+    product,
+  };
+};
+
+export const selectedProduct = (product) => {
+  return {
+    type: SELECT_PRODUCT,
     product,
   };
 };

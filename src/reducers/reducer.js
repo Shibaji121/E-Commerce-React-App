@@ -1,8 +1,9 @@
-import { ADD_PRODUCTS, ADD_TO_CART } from "../actions/action";
+import { ADD_PRODUCTS, ADD_TO_CART, SELECT_PRODUCT } from "../actions/action";
 
 const initialProductState = {
   cart: [],
   productList: [],
+  product: {},
 };
 
 export default function productReducer(state = initialProductState, action) {
@@ -16,6 +17,11 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         productList: action.list,
+      };
+    case SELECT_PRODUCT:
+      return {
+        ...state,
+        product: action.product,
       };
     default:
       return state;
