@@ -13,10 +13,11 @@ function AllProductsPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const products = useSelector((state) => state.productReducer.productList);
+  console.log("repeating check");
 
   useEffect(() => {
     dispatch(handleAddProducts());
-  });
+  }, [dispatch]);
 
   function addProductToCart(product) {
     dispatch(addToCart(product));
