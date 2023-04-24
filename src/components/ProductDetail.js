@@ -61,9 +61,6 @@ function ProductDetail() {
               type="submit"
               onClick={() => {
                 addProductToCart(product);
-                toast.success("Product Added To Cart Successfully", {
-                  position: toast.POSITION.TOP_CENTER,
-                });
               }}
             >
               Add To Cart
