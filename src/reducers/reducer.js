@@ -3,6 +3,7 @@ import {
   ADD_PRODUCT_TO_LIST,
   ADD_TO_CART,
   DELETE_PRODUCT,
+  REMOVE_SORT,
   SELECT_PRODUCT,
   SORT_BY_PRICE,
   UPDATE_PRODUCT,
@@ -12,6 +13,7 @@ const initialProductState = {
   cart: [],
   productList: [],
   product: {},
+  beforeSortList: [],
   noRefetch: false,
 };
 
@@ -46,8 +48,14 @@ export default function productReducer(state = initialProductState, action) {
         .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
       return {
         ...state,
+        beforeSortList: state.productList,
         productList: sortedProducts,
         noRefetch: false,
+      };
+    case REMOVE_SORT:
+      return {
+        ...state,
+        productList: state.beforeSortList,
       };
     case DELETE_PRODUCT:
       const filteredArray = state.productList.filter(

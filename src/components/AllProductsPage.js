@@ -5,6 +5,7 @@ import {
   addToCart,
   deleteProduct,
   handleAddProducts,
+  removeSort,
   selectedProduct,
   sortByPrice,
   updateProduct,
@@ -60,7 +61,7 @@ function AllProductsPage() {
         src="https://i.ibb.co/60KKyQc/x-mark.png"
         alt="cross"
         onClick={() => {
-          dispatch(handleAddProducts());
+          dispatch(removeSort());
           ref.current.style.display = "none";
         }}
       />
