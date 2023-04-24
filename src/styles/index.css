@@ -88,3 +88,9 @@ a {
     transform: rotate(360deg);
   }
 }
+
+.react-toast-notifications__container {
+  margin-top: 6rem;
+  font-size: larger;
+  font-weight: 500;
+}

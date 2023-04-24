@@ -55,7 +55,7 @@ export default function productReducer(state = initialProductState, action) {
     case SORT_BY_PRICE:
       const parsePrice = (x) =>
         parseFloat(x.toString().replace(/^\$/, "")) || 0;
-      const sortedProducts = state.productList
+      const sortedProducts = action.products
         .slice()
         .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
       return {

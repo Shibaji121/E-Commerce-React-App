@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import StarRating from "./StarRating";
 import { Link, useNavigate } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 function ProductList(props) {
   const [editMode, setEditMode] = useState(false);
@@ -9,6 +10,7 @@ function ProductList(props) {
   const [rating, setRating] = useState("");
   const [about, setAbout] = useState("");
   const navigate = useNavigate();
+  const { addToast } = useToasts();
 
   function onclickSaveButton(product) {
     let updatedDetail = {
@@ -82,6 +84,9 @@ function ProductList(props) {
               type="submit"
               onClick={() => {
                 setEditMode(false);
+                addToast("You Discarded The Change", {
+                  appearance: "info",
+                });
               }}
             >
               Discard

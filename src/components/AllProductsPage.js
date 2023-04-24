@@ -13,10 +13,12 @@ import {
 } from "../actions/action";
 import ProductList from "./ProductList";
 import Loading from "./Loading";
+import { useToasts } from "react-toast-notifications";
 
 function AllProductsPage() {
   const dispatch = useDispatch();
   const ref = useRef();
+  const { addToast } = useToasts();
   const products = useSelector((state) => state.productReducer.productList);
   const cartItems = useSelector((state) => state.productReducer.cart);
   console.log(products);
@@ -27,6 +29,9 @@ function AllProductsPage() {
 
   function addProductToCart(product) {
     dispatch(addToCart(product));
+    addToast("Product Added To Cart Successfully", {
+      appearance: "success",
+    });
   }
 
   function handleSelectProduct(product) {
@@ -36,14 +41,31 @@ function AllProductsPage() {
   function handleSortByPrice(products) {
     dispatch(sortByPrice(products));
     ref.current.style.display = "block";
+    addToast("Products Sorted By Price Successfully", {
+      appearance: "success",
+    });
+  }
+
+  function handleRemoveSortByPrice() {
+    dispatch(removeSort());
+    ref.current.style.display = "none";
+    addToast("Sort By Price Filter Removed Successfully", {
+      appearance: "info",
+    });
   }
 
   function handleDeleteProduct(product) {
     dispatch(deleteProduct(product));
+    addToast("Product Deleted From List", {
+      appearance: "warning",
+    });
   }
 
   function handleUpdateProduct(product, updatedDetail) {
     dispatch(updateProduct(product, updatedDetail));
+    addToast("Product Updated Successfully", {
+      appearance: "success",
+    });
   }
 
   const isProductInCart = (product) => {
@@ -56,6 +78,9 @@ function AllProductsPage() {
 
   function handleRemoveProductFromCart(product) {
     dispatch(removeFromCart(product));
+    addToast("Product Removed From Cart Successfully", {
+      appearance: "success",
+    });
   }
 
   return (
@@ -75,8 +100,7 @@ function AllProductsPage() {
         src="https://i.ibb.co/60KKyQc/x-mark.png"
         alt="cross"
         onClick={() => {
-          dispatch(removeSort());
-          ref.current.style.display = "none";
+          handleRemoveSortByPrice();
         }}
       />
       {products.length === 0 ? (
