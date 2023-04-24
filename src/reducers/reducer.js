@@ -94,7 +94,7 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         cart: filteredCartArray,
-        noRefetch: false,
+        noRefetch: true,
       };
     default:
       return state;

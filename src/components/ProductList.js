@@ -151,13 +151,23 @@ function ProductList(props) {
             >
               Product Details
             </button>
-            <button
-              className="trans-btn"
-              type="submit"
-              onClick={() => props.addProductToCart(props.product)}
-            >
-              Add To Cart
-            </button>
+            {props.isProductInCart(props.product) ? (
+              <button
+                className="red-btn"
+                type="submit"
+                onClick={() => props.handleRemoveProductFromCart(props.product)}
+              >
+                Remove From Cart
+              </button>
+            ) : (
+              <button
+                className="trans-btn"
+                type="submit"
+                onClick={() => props.addProductToCart(props.product)}
+              >
+                Add To Cart
+              </button>
+            )}
           </div>
         </div>
       )}

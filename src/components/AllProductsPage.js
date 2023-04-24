@@ -5,6 +5,7 @@ import {
   addToCart,
   deleteProduct,
   handleAddProducts,
+  removeFromCart,
   removeSort,
   selectedProduct,
   sortByPrice,
@@ -17,6 +18,7 @@ function AllProductsPage() {
   const dispatch = useDispatch();
   const ref = useRef();
   const products = useSelector((state) => state.productReducer.productList);
+  const cartItems = useSelector((state) => state.productReducer.cart);
   console.log(products);
 
   useEffect(() => {
@@ -42,6 +44,18 @@ function AllProductsPage() {
 
   function handleUpdateProduct(product, updatedDetail) {
     dispatch(updateProduct(product, updatedDetail));
+  }
+
+  const isProductInCart = (product) => {
+    const index = cartItems.indexOf(product);
+    if (index !== -1) {
+      return true;
+    }
+    return false;
+  };
+
+  function handleRemoveProductFromCart(product) {
+    dispatch(removeFromCart(product));
   }
 
   return (
@@ -78,6 +92,8 @@ function AllProductsPage() {
                 addProductToCart={addProductToCart}
                 handleSelectProduct={handleSelectProduct}
                 handleUpdateProduct={handleUpdateProduct}
+                isProductInCart={isProductInCart}
+                handleRemoveProductFromCart={handleRemoveProductFromCart}
               />
             );
           })}
