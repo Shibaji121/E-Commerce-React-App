@@ -2,7 +2,8 @@ import React from "react";
 import "../styles/cart.css";
 import StarRating from "./StarRating";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../actions/action";
+import { removeFromCart, selectedProduct } from "../actions/action";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const cartItems = useSelector((state) => state.productReducer.cart);
@@ -21,7 +22,13 @@ function Cart() {
             {cartItems.map((item) => {
               return (
                 <div key={item.id} className="cart-container">
-                  <img src={item.image} alt="product-img" />
+                  <Link to={`/productDetail/${item.id}`}>
+                    <img
+                      src={item.image}
+                      alt="product-img"
+                      onClick={() => dispatch(selectedProduct(item))}
+                    />
+                  </Link>
                   <div className="product-detail">
                     <div style={{ color: "red" }}>{item.title}</div>
                     <div className="rating">

@@ -17,7 +17,7 @@
   height: inherit;
 }
 .cart-container img {
-  height: inherit;
+  height: -webkit-fill-available;
   width: 10rem;
   margin: 1rem;
   padding: 0.7rem;
