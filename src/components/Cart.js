@@ -1,15 +1,19 @@
 import React from "react";
 import "../styles/cart.css";
 import StarRating from "./StarRating";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../actions/action";
 
 function Cart() {
   const cartItems = useSelector((state) => state.productReducer.cart);
+  const dispatch = useDispatch();
 
   return (
     <div className="cart">
       {cartItems.length === 0 ? (
-        <h1>Hey Buddy..!! Add Some item to your Bucket</h1>
+        <h1 style={{ textAlign: "center", marginTop: "8rem" }}>
+          Hey Buddy..!! Add Some item to your Bucket
+        </h1>
       ) : (
         <>
           <h1 style={{ textAlign: "center" }}>Your Bucket List</h1>
@@ -25,7 +29,12 @@ function Cart() {
                       <span>{item.rating}.0</span>
                     </div>
                     <div>Price: ₹{item.price}.00</div>
-                    <button type="submit">Remove</button>
+                    <button
+                      type="submit"
+                      onClick={() => dispatch(removeFromCart(item))}
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               );

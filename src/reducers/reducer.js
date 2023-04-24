@@ -3,6 +3,7 @@ import {
   ADD_PRODUCT_TO_LIST,
   ADD_TO_CART,
   DELETE_PRODUCT,
+  REMOVE_FROM_CART,
   REMOVE_SORT,
   SELECT_PRODUCT,
   SORT_BY_PRICE,
@@ -85,6 +86,15 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         productList: updatedProductList,
+      };
+    case REMOVE_FROM_CART:
+      const filteredCartArray = state.cart.filter(
+        (product) => product.id !== action.product.id
+      );
+      return {
+        ...state,
+        cart: filteredCartArray,
+        noRefetch: false,
       };
     default:
       return state;

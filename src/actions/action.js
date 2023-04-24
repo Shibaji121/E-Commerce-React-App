@@ -7,6 +7,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const ADD_PRODUCT_TO_LIST = "ADD_PRODUCT_TO_LIST";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const REMOVE_SORT = "REMOVE_SORT";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
 // action creators
 export const addToCart = (product) => {
@@ -55,6 +56,13 @@ export const updateProduct = (product, updatedDetail) => {
 export const removeSort = () => {
   return {
     type: REMOVE_SORT,
+  };
+};
+
+export const removeFromCart = (product) => {
+  return {
+    type: REMOVE_FROM_CART,
+    product,
   };
 };
 
