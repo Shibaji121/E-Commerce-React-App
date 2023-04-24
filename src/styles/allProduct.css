@@ -80,3 +80,18 @@
   background-color: red;
   color: white;
 }
+.green-btn {
+  background-color: green;
+  color: white;
+}
+.product-container input {
+  height: 1.5rem;
+  margin-bottom: 5px;
+  padding: 0px 15px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+}
+.product-container textarea {
+  padding: 0px 7px;
+  border-radius: 18px;
+}
