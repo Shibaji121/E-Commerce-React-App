@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../styles/allProduct.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,7 +19,7 @@ function AllProductsPage() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productReducer.productList);
   const cartItems = useSelector((state) => state.productReducer.cart);
-  const [isSorted, setSorted] = useState(false);
+  const isSorted = useSelector((state) => state.productReducer.isSorted);
 
   useEffect(() => {
     dispatch(handleAddProducts());
@@ -38,7 +38,6 @@ function AllProductsPage() {
 
   function handleSortByPrice(products) {
     dispatch(sortByPrice(products));
-    setSorted(true);
     toast.success("Products Sorted By Price Successfully", {
       position: toast.POSITION.TOP_CENTER,
     });
@@ -46,7 +45,6 @@ function AllProductsPage() {
 
   function handleRemoveSortByPrice() {
     dispatch(removeSort());
-    setSorted(false);
     toast.success("Sort By Price Filter Removed Successfully", {
       position: toast.POSITION.TOP_CENTER,
     });

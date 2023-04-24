@@ -17,6 +17,7 @@ const initialProductState = {
   beforeSortList: [],
   isInCart: false,
   noRefetch: false,
+  isSorted: false,
 };
 
 export default function productReducer(state = initialProductState, action) {
@@ -30,7 +31,7 @@ export default function productReducer(state = initialProductState, action) {
       };
 
     case ADD_PRODUCTS:
-      if (state.noRefetch) {
+      if (state.noRefetch || state.isSorted) {
         return {
           ...state,
         };
@@ -67,12 +68,14 @@ export default function productReducer(state = initialProductState, action) {
         beforeSortList: state.productList,
         productList: sortedProducts,
         noRefetch: false,
+        isSorted: true,
       };
 
     case REMOVE_SORT:
       return {
         ...state,
         productList: state.beforeSortList,
+        isSorted: false,
       };
 
     case DELETE_PRODUCT:
