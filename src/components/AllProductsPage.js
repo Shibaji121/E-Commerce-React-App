@@ -58,11 +58,11 @@ function AllProductsPage() {
           ref.current.style.display = "none";
         }}
       />
-      {products.map((product, index) => {
+      {products.map((product) => {
         return (
           <ProductList
+            key={product.id}
             product={product}
-            key={index}
             handleDeleteProduct={handleDeleteProduct}
             addProductToCart={addProductToCart}
             handleSelectProduct={handleSelectProduct}

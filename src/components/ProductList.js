@@ -9,12 +9,13 @@ function ProductList(props) {
   const [rating, setRating] = useState("");
   const [about, setAbout] = useState("");
   const navigate = useNavigate();
+  //   console.log("dhd");
 
   return (
     <>
       {editMode ? (
         <div
-          key={props.key}
+          key={props.product.id}
           id={props.product.id}
           className="product-container"
         >
@@ -81,7 +82,7 @@ function ProductList(props) {
         </div>
       ) : (
         <div
-          key={props.key}
+          key={props.product.id}
           id={props.product.id}
           className="product-container"
         >
