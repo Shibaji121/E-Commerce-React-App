@@ -9,6 +9,7 @@ import {
   sortByPrice,
 } from "../actions/action";
 import ProductList from "./ProductList";
+import Loading from "./Loading";
 
 function AllProductsPage() {
   const dispatch = useDispatch();
@@ -58,17 +59,23 @@ function AllProductsPage() {
           ref.current.style.display = "none";
         }}
       />
-      {products.map((product) => {
-        return (
-          <ProductList
-            key={product.id}
-            product={product}
-            handleDeleteProduct={handleDeleteProduct}
-            addProductToCart={addProductToCart}
-            handleSelectProduct={handleSelectProduct}
-          />
-        );
-      })}
+      {products.length === 0 ? (
+        <Loading />
+      ) : (
+        <>
+          {products.map((product) => {
+            return (
+              <ProductList
+                key={product.id}
+                product={product}
+                handleDeleteProduct={handleDeleteProduct}
+                addProductToCart={addProductToCart}
+                handleSelectProduct={handleSelectProduct}
+              />
+            );
+          })}
+        </>
+      )}
     </div>
   );
 }
