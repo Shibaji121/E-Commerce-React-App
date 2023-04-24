@@ -4,19 +4,18 @@ import StarRating from "./StarRating";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../actions/action";
 import { useNavigate } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-toastify";
 
 function ProductDetail() {
   const product = useSelector((state) => state.productReducer.product);
   const isInCart = useSelector((state) => state.productReducer.isInCart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
 
   function addProductToCart(product) {
     dispatch(addToCart(product));
-    addToast("Product Added To Cart Successfully", {
-      appearance: "success",
+    toast.success("Product Added To Cart Successfully", {
+      position: toast.POSITION.TOP_CENTER,
     });
   }
 
@@ -49,8 +48,8 @@ function ProductDetail() {
               type="submit"
               onClick={() => {
                 dispatch(removeFromCart(product));
-                addToast("Product Removed From Cart Successfully", {
-                  appearance: "success",
+                toast.success("Product Removed From Cart Successfully", {
+                  position: toast.POSITION.TOP_CENTER,
                 });
               }}
             >
@@ -60,7 +59,12 @@ function ProductDetail() {
             <button
               className="add-cart-btn"
               type="submit"
-              onClick={() => addProductToCart(product)}
+              onClick={() => {
+                addProductToCart(product);
+                toast.success("Product Added To Cart Successfully", {
+                  position: toast.POSITION.TOP_CENTER,
+                });
+              }}
             >
               Add To Cart
             </button>

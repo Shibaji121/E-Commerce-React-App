@@ -4,15 +4,15 @@ import "./styles/index.css";
 import App from "./components/App";
 import { Provider } from "react-redux";
 import store from "./store";
-import { ToastProvider } from "react-toast-notifications";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ToastProvider autoDismiss autoDismissTimeout={3000} placement="top-center">
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Provider>
-  </ToastProvider>
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+      <ToastContainer autoClose={2000} />
+    </React.StrictMode>
+  </Provider>
 );

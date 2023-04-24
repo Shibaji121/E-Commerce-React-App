@@ -3,7 +3,7 @@ import "../styles/addProduct.css";
 import { useDispatch } from "react-redux";
 import { addProductToList } from "../actions/action";
 import { useNavigate } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-toastify";
 
 function AddProduct() {
   const [title, setTitle] = useState("");
@@ -14,7 +14,6 @@ function AddProduct() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { addToast } = useToasts();
 
   // function to add product
   function handleAddProduct() {
@@ -28,8 +27,8 @@ function AddProduct() {
       about: about,
     };
     dispatch(addProductToList(product));
-    addToast("Product Added Successfully", {
-      appearance: "success",
+    toast.success("Product Added Successfully", {
+      position: toast.POSITION.TOP_CENTER,
     });
     return navigate("/");
   }

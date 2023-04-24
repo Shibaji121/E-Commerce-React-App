@@ -4,12 +4,11 @@ import StarRating from "./StarRating";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, selectedProduct } from "../actions/action";
 import { Link } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-toastify";
 
 function Cart() {
   const cartItems = useSelector((state) => state.productReducer.cart);
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
 
   return (
     <div className="cart">
@@ -42,9 +41,12 @@ function Cart() {
                       type="submit"
                       onClick={() => {
                         dispatch(removeFromCart(item));
-                        addToast("Product Removed From Cart Successfully", {
-                          appearance: "success",
-                        });
+                        toast.success(
+                          "Product Removed From Cart Successfully",
+                          {
+                            position: toast.POSITION.TOP_CENTER,
+                          }
+                        );
                       }}
                     >
                       Remove

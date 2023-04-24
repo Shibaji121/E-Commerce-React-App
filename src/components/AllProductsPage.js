@@ -13,11 +13,10 @@ import {
 } from "../actions/action";
 import ProductList from "./ProductList";
 import Loading from "./Loading";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-toastify";
 
 function AllProductsPage() {
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
   const products = useSelector((state) => state.productReducer.productList);
   const cartItems = useSelector((state) => state.productReducer.cart);
   const [isSorted, setSorted] = useState(false);
@@ -28,8 +27,8 @@ function AllProductsPage() {
 
   function addProductToCart(product) {
     dispatch(addToCart(product));
-    addToast("Product Added To Cart Successfully", {
-      appearance: "success",
+    toast.success("Product Added To Cart Successfully", {
+      position: toast.POSITION.TOP_CENTER,
     });
   }
 
@@ -40,30 +39,30 @@ function AllProductsPage() {
   function handleSortByPrice(products) {
     dispatch(sortByPrice(products));
     setSorted(true);
-    addToast("Products Sorted By Price Successfully", {
-      appearance: "success",
+    toast.success("Products Sorted By Price Successfully", {
+      position: toast.POSITION.TOP_CENTER,
     });
   }
 
   function handleRemoveSortByPrice() {
     dispatch(removeSort());
     setSorted(false);
-    addToast("Sort By Price Filter Removed Successfully", {
-      appearance: "info",
+    toast.success("Sort By Price Filter Removed Successfully", {
+      position: toast.POSITION.TOP_CENTER,
     });
   }
 
   function handleDeleteProduct(product) {
     dispatch(deleteProduct(product));
-    addToast("Product Deleted From List", {
-      appearance: "warning",
+    toast.warning("Product Deleted From List", {
+      position: toast.POSITION.TOP_CENTER,
     });
   }
 
   function handleUpdateProduct(product, updatedDetail) {
     dispatch(updateProduct(product, updatedDetail));
-    addToast("Product Updated Successfully", {
-      appearance: "success",
+    toast.success("Product Updated Successfully", {
+      position: toast.POSITION.TOP_CENTER,
     });
   }
 
@@ -78,8 +77,8 @@ function AllProductsPage() {
 
   function handleRemoveProductFromCart(product) {
     dispatch(removeFromCart(product));
-    addToast("Product Removed From Cart Successfully", {
-      appearance: "success",
+    toast.success("Product Removed From Cart Successfully", {
+      position: toast.POSITION.TOP_CENTER,
     });
   }
 

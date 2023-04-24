@@ -89,8 +89,8 @@ a {
   }
 }
 
-.react-toast-notifications__container {
-  margin-top: 6rem;
+.Toastify__toast-container {
+  margin-top: 4.7rem;
   font-size: larger;
   font-weight: 500;
 }
