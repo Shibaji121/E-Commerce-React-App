@@ -5,6 +5,7 @@ export const SELECT_PRODUCT = "SELECT_PRODUCT";
 export const SORT_BY_PRICE = "SORT_BY_PRICE";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const ADD_PRODUCT_TO_LIST = "ADD_PRODUCT_TO_LIST";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 // action creators
 export const addToCart = (product) => {
@@ -39,6 +40,14 @@ export const addProductToList = (product) => {
   return {
     type: ADD_PRODUCT_TO_LIST,
     product,
+  };
+};
+
+export const updateProduct = (product, updatedDetail) => {
+  return {
+    type: UPDATE_PRODUCT,
+    product,
+    updatedDetail,
   };
 };
 

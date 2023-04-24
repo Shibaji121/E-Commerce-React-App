@@ -5,6 +5,7 @@ import {
   DELETE_PRODUCT,
   SELECT_PRODUCT,
   SORT_BY_PRICE,
+  UPDATE_PRODUCT,
 } from "../actions/action";
 
 const initialProductState = {
@@ -62,6 +63,20 @@ export default function productReducer(state = initialProductState, action) {
         ...state,
         productList: [action.product, ...state.productList],
         noRefetch: true,
+      };
+    case UPDATE_PRODUCT:
+      let updatedProductList = state.productList.map((product) => {
+        if (product.id === action.product.id) {
+          product.title = action.updatedDetail.title;
+          product.price = action.updatedDetail.price;
+          product.rating = action.updatedDetail.rating;
+          product.about = action.updatedDetail.about;
+        }
+        return product;
+      });
+      return {
+        ...state,
+        productList: updatedProductList,
       };
     default:
       return state;

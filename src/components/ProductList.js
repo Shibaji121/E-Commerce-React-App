@@ -9,7 +9,17 @@ function ProductList(props) {
   const [rating, setRating] = useState("");
   const [about, setAbout] = useState("");
   const navigate = useNavigate();
-  //   console.log("dhd");
+
+  function onclickSaveButton(product) {
+    let updatedDetail = {
+      title: title,
+      price: price,
+      rating: rating,
+      about: about,
+    };
+    props.handleUpdateProduct(product, updatedDetail);
+    setEditMode(false);
+  }
 
   return (
     <>
@@ -25,7 +35,8 @@ function ProductList(props) {
           <div className="product-left-container">
             <input
               type="text"
-              value={props.product.title}
+              placeholder="Enter New Title"
+              value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
             <div className="rating">
@@ -33,7 +44,8 @@ function ProductList(props) {
               <span>
                 <input
                   type="number"
-                  value={props.product.rating}
+                  placeholder="Enter the New Rating"
+                  value={rating}
                   onChange={(e) => setRating(e.target.value)}
                 />{" "}
               </span>
@@ -42,7 +54,8 @@ function ProductList(props) {
               <textarea
                 rows="6"
                 cols="110"
-                value={props.product.about}
+                placeholder="Write the Updated Description about the product"
+                value={about}
                 onChange={(e) => setAbout(e.target.value)}
               />
             </div>
@@ -52,11 +65,16 @@ function ProductList(props) {
               Price:{" "}
               <input
                 type="number"
-                value={props.product.price}
+                placeholder="Enter the Updated Price"
+                value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
-            <button className="green-btn" type="submit">
+            <button
+              className="green-btn"
+              type="submit"
+              onClick={() => onclickSaveButton(props.product)}
+            >
               Save
             </button>
             <button
@@ -106,7 +124,13 @@ function ProductList(props) {
             <button
               className="blue-btn"
               type="submit"
-              onClick={() => setEditMode(true)}
+              onClick={() => {
+                setEditMode(true);
+                setTitle(props.product.title);
+                setPrice(props.product.price);
+                setRating(props.product.rating);
+                setAbout(props.product.about);
+              }}
             >
               Edit
             </button>

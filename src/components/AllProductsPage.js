@@ -7,6 +7,7 @@ import {
   handleAddProducts,
   selectedProduct,
   sortByPrice,
+  updateProduct,
 } from "../actions/action";
 import ProductList from "./ProductList";
 import Loading from "./Loading";
@@ -36,6 +37,10 @@ function AllProductsPage() {
 
   function handleDeleteProduct(product) {
     dispatch(deleteProduct(product));
+  }
+
+  function handleUpdateProduct(product, updatedDetail) {
+    dispatch(updateProduct(product, updatedDetail));
   }
 
   return (
@@ -71,6 +76,7 @@ function AllProductsPage() {
                 handleDeleteProduct={handleDeleteProduct}
                 addProductToCart={addProductToCart}
                 handleSelectProduct={handleSelectProduct}
+                handleUpdateProduct={handleUpdateProduct}
               />
             );
           })}
