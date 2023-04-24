@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import "../styles/productDetail.css";
 import StarRating from "./StarRating";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../actions/action";
+import { addToCart, removeFromCart } from "../actions/action";
 import { useNavigate } from "react-router-dom";
 
 function ProductDetail() {
   const product = useSelector((state) => state.productReducer.product);
+  const isInCart = useSelector((state) => state.productReducer.isInCart);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,13 +37,23 @@ function ProductDetail() {
             Product Description:
             <div style={{ color: "black" }}>{product.about}</div>
           </div>
-          <button
-            className="add-cart-btn"
-            type="submit"
-            onClick={() => addProductToCart(product)}
-          >
-            Add To Cart
-          </button>
+          {isInCart ? (
+            <button
+              className="add-cart-btn red-cart-btn"
+              type="submit"
+              onClick={() => dispatch(removeFromCart(product))}
+            >
+              Remove From Cart
+            </button>
+          ) : (
+            <button
+              className="add-cart-btn"
+              type="submit"
+              onClick={() => addProductToCart(product)}
+            >
+              Add To Cart
+            </button>
+          )}
         </div>
       </div>
     </div>

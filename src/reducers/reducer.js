@@ -15,6 +15,7 @@ const initialProductState = {
   productList: [],
   product: {},
   beforeSortList: [],
+  isInCart: false,
   noRefetch: false,
 };
 
@@ -24,6 +25,7 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         cart: [...state.cart, action.product],
+        isInCart: true,
       };
     case ADD_PRODUCTS:
       if (state.noRefetch) {
@@ -37,9 +39,18 @@ export default function productReducer(state = initialProductState, action) {
         noRefetch: false,
       };
     case SELECT_PRODUCT:
+      const index = state.cart.indexOf(action.product);
+      if (index !== -1) {
+        return {
+          ...state,
+          product: action.product,
+          isInCart: true,
+        };
+      }
       return {
         ...state,
         product: action.product,
+        isInCart: false,
       };
     case SORT_BY_PRICE:
       const parsePrice = (x) =>
@@ -95,6 +106,7 @@ export default function productReducer(state = initialProductState, action) {
         ...state,
         cart: filteredCartArray,
         noRefetch: true,
+        isInCart: false,
       };
     default:
       return state;

@@ -40,3 +40,6 @@
   background: #3b71ca;
   cursor: pointer;
 }
+.red-cart-btn {
+  background: red;
+}
