@@ -20,6 +20,7 @@ function ProductDetail() {
     });
   }
 
+  // To check the product exist or not. If not then go to Home
   useEffect(() => {
     if (JSON.stringify(product) === "{}") {
       return navigate("/");

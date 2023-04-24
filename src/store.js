@@ -7,7 +7,6 @@ const logger =
   (next) =>
   (action) => {
     // my middlware
-    // console.log("ACTION", action);
     next(action);
   };
 

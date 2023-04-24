@@ -12,6 +12,7 @@ function ProductList(props) {
   const navigate = useNavigate();
   const { addToast } = useToasts();
 
+  //   function to take all the updated data and dispatch the update action
   function onclickSaveButton(product) {
     let updatedDetail = {
       title: title,
@@ -156,7 +157,7 @@ function ProductList(props) {
             >
               Product Details
             </button>
-            {props.isProductInCart(props.product) ? (
+            {props.isProductInCart ? (
               <button
                 className="red-btn"
                 type="submit"

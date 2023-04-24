@@ -95,3 +95,12 @@
   padding: 0px 7px;
   border-radius: 18px;
 }
+.cross-btn {
+  width: 2rem;
+  float: right;
+  margin-top: -54px;
+  margin-right: -37px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}

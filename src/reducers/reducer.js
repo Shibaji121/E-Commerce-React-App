@@ -26,7 +26,9 @@ export default function productReducer(state = initialProductState, action) {
         ...state,
         cart: [...state.cart, action.product],
         isInCart: true,
+        noRefetch: true,
       };
+
     case ADD_PRODUCTS:
       if (state.noRefetch) {
         return {
@@ -36,8 +38,9 @@ export default function productReducer(state = initialProductState, action) {
       return {
         ...state,
         productList: action.list,
-        noRefetch: false,
+        noRefetch: true,
       };
+
     case SELECT_PRODUCT:
       const index = state.cart.indexOf(action.product);
       if (index !== -1) {
@@ -52,6 +55,7 @@ export default function productReducer(state = initialProductState, action) {
         product: action.product,
         isInCart: false,
       };
+
     case SORT_BY_PRICE:
       const parsePrice = (x) =>
         parseFloat(x.toString().replace(/^\$/, "")) || 0;
@@ -64,11 +68,13 @@ export default function productReducer(state = initialProductState, action) {
         productList: sortedProducts,
         noRefetch: false,
       };
+
     case REMOVE_SORT:
       return {
         ...state,
         productList: state.beforeSortList,
       };
+
     case DELETE_PRODUCT:
       const filteredArray = state.productList.filter(
         (product) => product.id !== action.product.id
@@ -78,12 +84,14 @@ export default function productReducer(state = initialProductState, action) {
         productList: filteredArray,
         noRefetch: false,
       };
+
     case ADD_PRODUCT_TO_LIST:
       return {
         ...state,
         productList: [action.product, ...state.productList],
         noRefetch: true,
       };
+
     case UPDATE_PRODUCT:
       let updatedProductList = state.productList.map((product) => {
         if (product.id === action.product.id) {
@@ -98,6 +106,7 @@ export default function productReducer(state = initialProductState, action) {
         ...state,
         productList: updatedProductList,
       };
+
     case REMOVE_FROM_CART:
       const filteredCartArray = state.cart.filter(
         (product) => product.id !== action.product.id
@@ -108,6 +117,7 @@ export default function productReducer(state = initialProductState, action) {
         noRefetch: true,
         isInCart: false,
       };
+
     default:
       return state;
   }

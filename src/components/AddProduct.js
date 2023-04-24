@@ -16,6 +16,7 @@ function AddProduct() {
   const navigate = useNavigate();
   const { addToast } = useToasts();
 
+  // function to add product
   function handleAddProduct() {
     let id = Date.now();
     const product = {

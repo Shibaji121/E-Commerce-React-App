@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/allProduct.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,11 +17,10 @@ import { useToasts } from "react-toast-notifications";
 
 function AllProductsPage() {
   const dispatch = useDispatch();
-  const ref = useRef();
   const { addToast } = useToasts();
   const products = useSelector((state) => state.productReducer.productList);
   const cartItems = useSelector((state) => state.productReducer.cart);
-  console.log(products);
+  const [isSorted, setSorted] = useState(false);
 
   useEffect(() => {
     dispatch(handleAddProducts());
@@ -40,7 +39,7 @@ function AllProductsPage() {
 
   function handleSortByPrice(products) {
     dispatch(sortByPrice(products));
-    ref.current.style.display = "block";
+    setSorted(true);
     addToast("Products Sorted By Price Successfully", {
       appearance: "success",
     });
@@ -48,7 +47,7 @@ function AllProductsPage() {
 
   function handleRemoveSortByPrice() {
     dispatch(removeSort());
-    ref.current.style.display = "none";
+    setSorted(false);
     addToast("Sort By Price Filter Removed Successfully", {
       appearance: "info",
     });
@@ -68,6 +67,7 @@ function AllProductsPage() {
     });
   }
 
+  // To check the product in cart or not
   const isProductInCart = (product) => {
     const index = cartItems.indexOf(product);
     if (index !== -1) {
@@ -94,15 +94,19 @@ function AllProductsPage() {
       >
         Sort By Price
       </button>
-      <img
-        className="cross-btn"
-        ref={ref}
-        src="https://i.ibb.co/60KKyQc/x-mark.png"
-        alt="cross"
-        onClick={() => {
-          handleRemoveSortByPrice();
-        }}
-      />
+      {isSorted ? (
+        <img
+          className="cross-btn"
+          src="https://i.ibb.co/60KKyQc/x-mark.png"
+          alt="cross"
+          onClick={() => {
+            handleRemoveSortByPrice();
+          }}
+        />
+      ) : (
+        <></>
+      )}
+
       {products.length === 0 ? (
         <Loading />
       ) : (
@@ -116,7 +120,7 @@ function AllProductsPage() {
                 addProductToCart={addProductToCart}
                 handleSelectProduct={handleSelectProduct}
                 handleUpdateProduct={handleUpdateProduct}
-                isProductInCart={isProductInCart}
+                isProductInCart={isProductInCart(product)}
                 handleRemoveProductFromCart={handleRemoveProductFromCart}
               />
             );
