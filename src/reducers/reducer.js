@@ -49,12 +49,14 @@ export default function productReducer(state = initialProductState, action) {
           ...state,
           product: action.product,
           isInCart: true,
+          noRefetch: true,
         };
       }
       return {
         ...state,
         product: action.product,
         isInCart: false,
+        noRefetch: true,
       };
 
     case SORT_BY_PRICE:
