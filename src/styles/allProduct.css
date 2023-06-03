@@ -49,7 +49,7 @@
   margin-right: 20px;
 }
 .product-right-container button {
-  height: 2rem;
+  height: 3rem;
   font-size: 18px;
   font-weight: 500;
   padding: 5px;
@@ -94,6 +94,8 @@
 .product-container textarea {
   padding: 0px 7px;
   border-radius: 18px;
+  max-width: 30rem;
+  float: left;
 }
 .cross-btn {
   width: 2rem;
