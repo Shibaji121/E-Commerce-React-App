@@ -94,7 +94,7 @@ function AllProductsPage() {
       {isSorted ? (
         <img
           className="cross-btn"
-          src="https://i.ibb.co/60KKyQc/x-mark.png"
+          src="https://cdn-icons-png.flaticon.com/128/1617/1617543.png"
           alt="cross"
           onClick={() => {
             handleRemoveSortByPrice();
