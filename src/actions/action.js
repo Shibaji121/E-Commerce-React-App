@@ -8,6 +8,8 @@ export const ADD_PRODUCT_TO_LIST = "ADD_PRODUCT_TO_LIST";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const REMOVE_SORT = "REMOVE_SORT";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
+export const ADD_TO_FAVOUR = "ADD_TO_FAVOUR";
 
 // action creators
 export const addToCart = (product) => {
@@ -91,5 +93,19 @@ export const addProducts = (list) => {
   return {
     type: ADD_PRODUCTS,
     list,
+  };
+};
+
+export const searchTheProduct = (productName) => {
+  return {
+    type: SEARCH_PRODUCT,
+    productName,
+  };
+};
+
+export const addFavourite = (product) => {
+  return {
+    type: ADD_TO_FAVOUR,
+    product,
   };
 };

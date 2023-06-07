@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import StarRating from "./StarRating";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addFavourite } from "../actions/action";
 
 function ProductList(props) {
   const [editMode, setEditMode] = useState(false);
@@ -10,6 +12,7 @@ function ProductList(props) {
   const [rating, setRating] = useState("");
   const [about, setAbout] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //   function to take all the updated data and dispatch the update action
   function onclickSaveButton(product) {
@@ -22,6 +25,10 @@ function ProductList(props) {
     props.handleUpdateProduct(product, updatedDetail);
     setEditMode(false);
   }
+
+  const addToFavourite = (product) => {
+    dispatch(addFavourite(product));
+  };
 
   return (
     <>
@@ -123,6 +130,11 @@ function ProductList(props) {
               <span>{props.product.rating}.0</span>
             </div>
             <div className="product-details">{props.product.about}</div>
+            <div>
+              <button onClick={() => addToFavourite(props.product)}>
+                Add To Favourite
+              </button>
+            </div>
           </div>
           <div className="product-right-container">
             <div className="price">Price: ₹{props.product.price}.00</div>

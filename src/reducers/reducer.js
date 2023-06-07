@@ -2,9 +2,11 @@ import {
   ADD_PRODUCTS,
   ADD_PRODUCT_TO_LIST,
   ADD_TO_CART,
+  ADD_TO_FAVOUR,
   DELETE_PRODUCT,
   REMOVE_FROM_CART,
   REMOVE_SORT,
+  SEARCH_PRODUCT,
   SELECT_PRODUCT,
   SORT_BY_PRICE,
   UPDATE_PRODUCT,
@@ -15,6 +17,7 @@ const initialProductState = {
   productList: [],
   product: {},
   beforeSortList: [],
+  favourList: [],
   isInCart: false,
   noRefetch: false,
   isSorted: false,
@@ -29,6 +32,23 @@ export default function productReducer(state = initialProductState, action) {
         isInCart: true,
         noRefetch: true,
       };
+    case SEARCH_PRODUCT:
+      console.log(action.productName);
+      const searchList = state.productList.filter(
+        (product) => product.title === action.productName
+      );
+      console.log(searchList);
+      return {
+        ...state,
+        productList: searchList,
+        noRefetch: true,
+      };
+
+    case ADD_TO_FAVOUR:
+      return {
+        ...state,
+        favourList: [action.product, ...state.favourList],
+      };
 
     case ADD_PRODUCTS:
       if (state.noRefetch || state.isSorted) {
@@ -36,9 +56,15 @@ export default function productReducer(state = initialProductState, action) {
           ...state,
         };
       }
+      const products = localStorage.getItem("products");
+      if (products === null) {
+        localStorage.setItem("products", JSON.stringify(action.list));
+      }
+      const productslist = JSON.parse(localStorage.getItem("products"));
+      console.log(products);
       return {
         ...state,
-        productList: action.list,
+        productList: productslist,
         noRefetch: true,
       };
 
@@ -84,6 +110,7 @@ export default function productReducer(state = initialProductState, action) {
       const filteredArray = state.productList.filter(
         (product) => product.id !== action.product.id
       );
+      localStorage.setItem("products", JSON.stringify(filteredArray));
       return {
         ...state,
         productList: filteredArray,
@@ -91,10 +118,13 @@ export default function productReducer(state = initialProductState, action) {
       };
 
     case ADD_PRODUCT_TO_LIST:
+      // const list = state.productList;
+      const updatedList = [action.product, ...state.productList];
+      console.log(updatedList);
+      localStorage.setItem("products", JSON.stringify(updatedList));
       return {
         ...state,
-        productList: [action.product, ...state.productList],
-        noRefetch: true,
+        productList: updatedList,
       };
 
     case UPDATE_PRODUCT:

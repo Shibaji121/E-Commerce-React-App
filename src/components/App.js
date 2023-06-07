@@ -6,6 +6,7 @@ import Cart from "./Cart";
 import ProductDetail from "./ProductDetail";
 import AddProduct from "./AddProduct";
 import PageNotFound from "./PageNotFound";
+import Favourites from "./Favourites";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AllProductsPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/favourites" element={<Favourites />} />
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="*" element={<PageNotFound />} />

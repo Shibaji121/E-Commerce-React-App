@@ -1,9 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { searchTheProduct } from "../actions/action";
 
 function Navbar() {
   const cartItems = useSelector((state) => state.productReducer.cart);
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+
+  const searchProduct = () => {
+    dispatch(searchTheProduct(search));
+  };
 
   return (
     <nav className="navbar-container">
@@ -28,8 +35,19 @@ function Navbar() {
             style={{ marginLeft: "-30px" }}
           />
         </Link>
+        <div>
+          <input
+            value={search}
+            placeholder="Search"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button onClick={searchProduct}>Search</button>
+        </div>
       </div>
       <div className="right-nav">
+        <Link to="/favourites">
+          <div>Favourites</div>
+        </Link>
         <Link to="/cart">
           <img
             src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png"
